@@ -1,0 +1,48 @@
+<form [formGroup]="loginForm" (submit)="doLogin()">
+    <div>
+    <div class="form-group">
+      <label for="exampleInputName">Name</label>
+      <input type="text" class="form-control" id="exampleInputName" aria-describedby="nameHelp" placeholder="Enter Name"
+        name="uname" formControlName="username">  <br>
+
+        {{loginForm.get('username').errors | json}}
+
+        <p class="alert alert-danger" *ngIf="usernameCtrl.touched && usernameCtrl.invalid">
+            Please Enter Username
+        </p>
+
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"
+        name="uemail" formControlName="useremail"><br> 
+
+        {{loginForm.get('useremail').errors | json}}
+
+        <p class="alert alert-danger" *ngIf="loginForm.get('useremail').touched && loginForm.get('useremail').errors?.emailDomain">
+          Please Enter csz.com domain mail
+        </p>
+    </div>
+
+    <div class="form-group" formArrayName="hobbies">
+      <div><h2>Add Hoobies</h2>
+      <button type="button" class="btn btn-success" (click)="addHobby()">Add Hobbies</button> <br><br>
+    </div>
+
+    <div *ngFor="let hobby of hobbiesCtrl; index as i;">
+      <label for="exampleInputEmail1">Hobby</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"
+        name="hobby" [formControlName]="i"><br> 
+      </div>
+
+
+    </div>
+
+
+   </div>
+ 
+  
+    
+    <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Submit</button>&nbsp; 
+     <button type="button" class="btn btn-danger">Reset</button>
+  </form>

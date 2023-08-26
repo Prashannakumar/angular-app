@@ -1,0 +1,48 @@
+<h2>Add Products</h2>
+
+<!-- Product Name: <input type="text" #pdt> <br><br> -->
+
+<!-- Product Name: <input type="text" (blur)="createProduct2($event)"> <br><br> -->
+
+Product Name: <input type="text" [(ngModel)]="productName"> <br>
+{{productName}}
+<br>
+{{productName.length}}
+<p *ngIf="productName.length==0 else msg">Please Enter Product Name</p>
+
+<ng-template #msg>
+    <p>Thank You</p>
+</ng-template>
+
+<p [hidden]="isCreate">
+    Hidden Example
+</p>
+
+<br>
+Product Status: {{productStatus}} <br>
+<!-- {{arr[0]}}, {{obj.fname}}, {{2+3}}, {{doTest()}} -->
+
+<!-- <p [innerHTML]="productStatus">
+    
+</p> -->
+
+{{isCreate}}
+<br>
+
+<button (click)="createProduct()" [disabled]="!isCreate"
+[class.myactive]="isCreate"
+[style.color]="isCreate ? 'yellow' : 'red'">Create Product</button>
+
+<h3>Account Status</h3>
+
+{{ps1.accountStatus}} <br><br>
+
+<button (click)="changeStatus()">Change Status</button> <br><br>
+
+<button (click)="paData3='New data from Parent'">Send Data to Child</button>
+
+<hr>
+
+<app-listproducts [myPaData1]="paData1" 
+[myPaData2]="paData2" 
+[myPaData3]="paData3" (onMyButtonClick)="receiveDataFromChild($event)"></app-listproducts>

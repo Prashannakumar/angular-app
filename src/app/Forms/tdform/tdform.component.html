@@ -1,0 +1,88 @@
+<form (submit)="onMyFormSubmit(f)" #f="ngForm">
+    <div>
+    <div class="form-group" [ngClass]="{'has-error' : username.touched && username.invalid}">
+      <label for="exampleInputName">Name</label>
+      <input type="text" class="form-control" id="exampleInputName" aria-describedby="nameHelp" placeholder="Enter Name"
+        name="uname"  [ngModel]="userName" required minlength="6" #username="ngModel">  <br>
+
+        {{username.errors | json}}
+
+        <p class="alert alert-danger" *ngIf="(username.touched || username.dirty) && username.errors?.required">
+            Please Enter Username
+        </p>
+
+        <p class="alert alert-danger" *ngIf="username.touched && username.errors?.minlength">
+          Please Enter Minimum 6 Characters
+        </p>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"
+        name="uemail"  [ngModel]="userEmail" email #useremail="ngModel"><br> 
+
+        <p class="alert alert-danger" *ngIf="useremail.touched && useremail.invalid">
+          Please Enter Valid Email
+        </p>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="text" class="form-control" id="exampleInputPassword1" aria-describedby="passHelp" placeholder="Password"
+       name="upassword" [ngModel]="userPassword" pattern="^(0|[1-9][0-9]*)$" #userpassword="ngModel"> <br>
+     
+      {{userpassword.errors | json}}
+
+      <p class="alert alert-danger" *ngIf="userpassword.errors?.pattern">
+        Please Enter Nos Only
+      </p>
+    </div>
+  </div>
+  <div>
+    <div class="form-group">
+      <label for="exampleSelect1">Select Country</label>
+      <select class="form-control" id="exampleSelect1" name="ucountry" [ngModel]="userCountry">
+        <option value="ind">India</option>
+        <option value="aus">Australia</option>
+        <option value="sri">Sri lanka</option>  
+      </select>
+    </div>
+  
+    <div class="form-group">
+      <label for="exampleTextarea">Address</label>
+      <textarea class="form-control" id="exampleTextarea" rows="3" name="uaddress" [ngModel]="userAddress"></textarea>
+     
+    </div>
+  </div>
+    <fieldset class="form-group">
+      <legend>Gender</legend>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" value="male" name="gender" [ngModel]="userGender"> Male </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" value="female" name="gender" [ngModel]="userGender">Female  
+        </label>
+      </div>
+  
+    </fieldset>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="checkbox" class="form-check-input" name="accept" [ngModel]="userAccept"> Check me out
+      </label>
+     
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Submit</button>&nbsp; 
+     <button type="button" class="btn btn-danger">Reset</button>
+  </form>
+
+
+<div *ngIf="f.submitted">
+  <h2>Form Data</h2>
+
+  Name :  {{formData.name}}<br><br>
+
+  Email : {{formData.email}}<br><br>
+
+  Address : {{formData.address}}<br><br>
+
+</div>

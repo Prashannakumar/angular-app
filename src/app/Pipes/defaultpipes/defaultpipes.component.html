@@ -1,0 +1,40 @@
+<h2>Default Pipes</h2>
+
+1. <ng-content select="p, [test]"></ng-content>
+
+2. <ng-content></ng-content>
+
+
+lowercase : {{username | lowercase}} <br><br>
+
+uppercase : {{place | uppercase}} <br><br>
+
+titlecase : {{profile | titlecase}} <br><br>
+
+slice : {{profile | slice:0:15 | uppercase}}... <br><br>
+
+json : {{obj | json}} <br><br> 
+
+number : {{price | number:'3.4-5'}} <br><br>
+
+number : {{1.1 | number:'2.4-6'}} <br><br>
+
+percent : {{value | percent:'2.2-3'}} <br><br>
+
+currency : {{price | currency:"GBP"}} <br><br>
+
+date : {{dt | date:'dd-MMMM-yyyy, h:mm:ss:SSS, a'}} <br><br>
+
+<h3>Custom Pies</h3>
+
+Limit: <input type="number" [(ngModel)]="limit"> <br>
+
+<button (click)="limit=5">Set Limit as 5</button>
+<br>
+
+Summary : {{username | summary:limit}} <br><br>
+
+Summary : {{profile | summary:limit}} <br><br>
+
+
+<hr>

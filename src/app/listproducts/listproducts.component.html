@@ -1,0 +1,94 @@
+
+<h2>Data from Parent Component</h2>
+
+<p>
+    View Encapsulation Example
+</p>
+
+Data 1 : {{myPaData1}} <br><br>
+
+Data 2 : {{paData2}} <br><br>
+
+Data 3 :   {{paData3}}         <br><br>
+
+<h3>Send Data from Child to Parent</h3>
+
+<button (click)="sendDataToParent()">Send Data to Parent</button> <br><br>
+
+<h3>Account Status</h3>
+
+{{ps2.accountStatus}}
+
+<h2>List Products</h2>
+
+Search : <input type="text" [(ngModel)]="searchVal"> <br>
+{{searchVal}}
+<br>
+
+<ul appHighlight>
+<ng-container *ngIf="products.length > 0">
+
+    <li *ngFor="let pdt of products | filter:searchVal; index as i; first as f; last as l; even as e; odd as o;"
+    [ngClass]="{'odd' : o, 'even' : e}" 
+    [ngStyle]="{'color' : e ? 'white' : 'yellow'}">
+       {{i+1}}. {{pdt}} {{f}} {{l}} {{e}} {{o}}
+    </li>
+    
+</ng-container>
+</ul>
+
+<h2>ng Switch</h2>
+
+<button class="btn btn-primary" [ngClass]="{'active' : viewMode=='personal'}" (click)="viewMode='personal'">Persoanl</button> &nbsp;
+<button class="btn btn-danger" [ngClass]="{'active' : viewMode=='contact'}" (click)="viewMode='contact'">Contact</button> <br><br>
+
+
+<div [ngSwitch]="viewMode">
+
+    <div *ngSwitchCase="'personal'">
+        <h4>Persoanl Details</h4>
+        Name : Gopi <br>
+        Age : 67 <br>
+    </div>
+
+    <div *ngSwitchCase="'contact'">
+        <h4>Contact Details</h4>
+        Phone : 453453453 <br>
+        Email : gopi@gmail.com
+    </div>
+
+    <div *ngSwitchDefault>
+        No Info Found
+    </div>
+
+</div>
+
+Select Page: <select [(ngModel)]="page">
+    <option value="home">Home</option>
+    <option value="about">About US</option>
+    <option value="contact">Conatct Us</option>
+    <option value="other">Other</option>
+</select>
+
+{{page}}
+
+<div>
+    <div>
+        Welcome to Homepage
+    </div>
+
+    <div>
+        Welcome to About us page
+    </div>
+
+
+</div>
+
+<h3>NgNonBindable Example</h3>
+
+<p ngNonBindable>{{2+3}} = 5</p>
+
+<h3>Event Filtering</h3>
+
+<input type="text" (input)="onMyKeyUp($event)">
+
